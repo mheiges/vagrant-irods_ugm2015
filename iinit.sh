@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Run iRODS iinit for given user. Useful for 
+# changing users in tutorial exercises.
+
+USER=$1
+
+if [ -z "$USER" ]; then
+  echo "Usage: iinit.sh <irods_user>"
+  exit 1
+fi
+
+echo -n "password: "
+read -s PASSWD
+echo
+
+. /vagrant/install.env
+
+iexit full
+
+rm -f ~/.irods/irods_environment.json
+
+echo | iinit >/dev/null 2> >(grep -v 'Inappropriate ioctl') <<EOF
+$ICAT_SERVER
+$SRV_PORT
+$1
+$ICAT_SERVER_ZONE
+$PASSWD
+EOF
+

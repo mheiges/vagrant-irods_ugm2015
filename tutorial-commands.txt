@@ -1,0 +1,20 @@
+iadmin mkuser alice rodsuser
+iadmin moduser alice password alicepass
+iadmin mkuser bobby rodsuser
+iadmin moduser bobby password passWORD
+
+iadmin mkresc newResc unixfilesystem rs1.vm:/var/lib/irods/iRODS/new_vault
+
+iexit full
+
+iadmin mkresc storageRescRemote unixfilesystem rs1.vm:/var/lib/irods/storageVault1
+
+iadmin mkresc storageResc1 unixfilesystem ies.vm:/var/lib/irods/storageVault1
+iadmin mkresc storageResc2 unixfilesystem ies.vm:/var/lib/irods/storageVault2
+
+iadmin mkresc replResc replication
+
+iadmin addchildtoresc replResc newResc
+iadmin addchildtoresc replResc storageResc1
+iadmin addchildtoresc replResc storageResc2 
+iadmin modresc replResc rebalance
