@@ -1,6 +1,7 @@
 #!/bin/bash
 Bin="$( readlink -f -- "$( dirname -- "$0" )" )"
-set -x
+
+#set -x
 
 source "${Bin}/install.env"
 

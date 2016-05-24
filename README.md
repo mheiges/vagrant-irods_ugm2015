@@ -25,10 +25,12 @@ The Vagrantfile defines three virtual machines: `ies`, `rs1` and `client`. They
 are all based on the same vagrant box. Running `vagrant up` will start all three.
 Alternatively you can start them individually by name, e.g. `vagrant up ies`.
 
-There are install scripts to run on each of these hosts to prepare them for their
-intended roles. These scripts are simple implementations of the instructions in the
-`GettingStartedwiRODS4.1.pdf` linked above. The scripts are not idempotent so if
-they fail you may be better off destroying the VM and starting over.
+There are install scripts that Vagrant will run on each of these hosts
+to prepare them for their intended roles. These scripts are simple
+implementations of the instructions in the `GettingStartedwiRODS4.1.pdf`
+linked above. The scripts are not idempotent so if they fail you may be
+better off destroying the VM and starting over. If you run `vagrant up`
+with `--no-provision` you can run the scripts manually.
 
 The `install.env` file defines passwords and other variable values.
 

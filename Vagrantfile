@@ -5,16 +5,19 @@ IRODS_HOSTS = {
     :vagrant_box     => BOX,
     :vagrant_box_url => BOX_URL,
     :wf_hostname     => 'ies.vm',
+    :setup           => '/vagrant/install-ies.sh',
   },
   :rs1 => { # Resource Server
     :vagrant_box     => BOX,
     :vagrant_box_url => BOX_URL,
     :wf_hostname     => 'rs1.vm',
+    :setup           => '/vagrant/install-rs.sh',
   },
   :client => { # server with iCommands only
     :vagrant_box     => BOX,
     :vagrant_box_url => BOX_URL,
     :wf_hostname     => 'client.vm',
+    :setup           => '/vagrant/install-client.sh',
   },
 }
 
@@ -37,6 +40,8 @@ Vagrant.configure(2) do |config|
       vm_config.vm.box      = cfg[:vagrant_box]     if cfg[:vagrant_box]
       vm_config.vm.box_url  = cfg[:vagrant_box_url] if cfg[:vagrant_box_url]
       vm_config.vm.hostname = cfg[:wf_hostname]     if cfg[:wf_hostname]
+
+      vm_config.vm.provision "shell", inline: cfg[:setup]
 
     end
   end
