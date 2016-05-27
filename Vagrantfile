@@ -26,7 +26,7 @@ Vagrant.configure(2) do |config|
   IRODS_HOSTS.each do |name,cfg|
     config.vm.define name do |vm_config|
 
-      vm_config.vm.provider "virtualbox" do |v|
+      vm_config.vm.provider 'virtualbox' do |v|
         v.gui = false
       end
 
@@ -41,7 +41,9 @@ Vagrant.configure(2) do |config|
       vm_config.vm.box_url  = cfg[:vagrant_box_url] if cfg[:vagrant_box_url]
       vm_config.vm.hostname = cfg[:wf_hostname]     if cfg[:wf_hostname]
 
-      vm_config.vm.provision "shell", inline: cfg[:setup]
+      vm_config.vm.provision 'shell', inline: cfg[:setup]
+
+      config.vm.provision 'file', source: 'iinit.sh', destination: '/usr/local/bin/iinit.sh'
 
     end
   end
