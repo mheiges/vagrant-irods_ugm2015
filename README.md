@@ -16,7 +16,7 @@ This is a quick and dirty port; it is not fully documented nor supported by anyo
   - add `learner` to sudoers
   - install sshd
   - localhost on separate line in /etc/hosts to prevent vagrant clobber when setting hostname
-- disabled dnsmasq so it does not conflict with the vagrant landrush plugin management of DNS
+  - disabled dnsmasq so it does not conflict with the vagrant landrush plugin management of DNS
 
 
 ## Vagrant
