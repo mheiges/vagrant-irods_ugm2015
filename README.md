@@ -77,6 +77,29 @@ Setup using `/vagrant/install-rs.sh`
 Setup using `/vagrant/install-client.sh`
 
 
+### Custom Rules
+
+- `contrib/ebrc.re` in the Vagrant project defines some example custom
+rules that can be installed.
+
+Create the necessary resources that are used in the rules (e.g. `replResc`).
+
+On the IES node, copy the file to `/etc/irods/`
+
+        sudo cp /vagrant/contrib/ebrc.re /etc/irods/
+
+Then edit `/etc/irods/server_config.json` and prepend the rule set to the existing list:
+
+        "re_rulebase_set": [
+        {
+        "filename": "ebrc"
+        },
+        {
+        "filename": "core"
+        }
+        ]
+
+
 ## Tips
 
 In most cases you should use `vagrant ssh` for shell logins. If you want
