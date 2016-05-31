@@ -14,7 +14,7 @@ echo -n "password: "
 read -s PASSWD
 echo
 
-. /vagrant/install.env
+. /etc/reiinit.env
 
 iexit full
 
