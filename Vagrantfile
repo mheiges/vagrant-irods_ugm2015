@@ -5,19 +5,19 @@ IRODS_HOSTS = {
     :vagrant_box     => BOX,
     :vagrant_box_url => BOX_URL,
     :wf_hostname     => 'ies.vm',
-    :setup           => '/vagrant/install-ies.sh',
+    :setup           => '/vagrant/install/install-ies.sh',
   },
   :rs1 => { # Resource Server
     :vagrant_box     => BOX,
     :vagrant_box_url => BOX_URL,
     :wf_hostname     => 'rs1.vm',
-    :setup           => '/vagrant/install-rs.sh',
+    :setup           => '/vagrant/install/install-rs.sh',
   },
   :client => { # server with iCommands only
     :vagrant_box     => BOX,
     :vagrant_box_url => BOX_URL,
     :wf_hostname     => 'client.vm',
-    :setup           => '/vagrant/install-client.sh',
+    :setup           => '/vagrant/install/install-client.sh',
   },
 }
 
@@ -43,7 +43,11 @@ Vagrant.configure(2) do |config|
 
       vm_config.vm.provision 'shell', inline: cfg[:setup]
 
-      config.vm.provision 'file', source: 'iinit.sh', destination: '/usr/local/bin/iinit.sh'
+      config.vm.provision 'file', source: Dir.getwd + '/reiinit', destination: '/tmp/reiinit'
+      config.vm.provision 'shell', inline: 'mv /tmp/reiinit /usr/local/bin/reiinit', privileged: true
+
+      config.vm.provision 'file', source: Dir.getwd + 'install/install.env', destination: '/tmp/reiinit.env'
+      config.vm.provision 'shell', inline: 'mv /tmp/reiinit.env /etc/reiinit.env', privileged: true
 
     end
   end

@@ -28,9 +28,17 @@ cd /vagrant/scratch
 
 wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-icat-${IRODS_VERSION}-ubuntu14-x86_64.deb
 wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-database-plugin-postgres-1.5-ubuntu14-x86_64.deb
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-runtime-${IRODS_VERSION}-ubuntu14-x86_64.deb
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-dev-${IRODS_VERSION}-ubuntu14-x86_64.deb
 wget -nc ftp://ftp.renci.org/pub/irods/training/training-example-1.0.deb
 
-sudo dpkg -i irods-icat-${IRODS_VERSION}-ubuntu14-x86_64.deb irods-database-plugin-postgres-1.5-ubuntu14-x86_64.deb training-example-1.0.deb
+sudo dpkg -i irods-icat-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+             irods-database-plugin-postgres-1.5-ubuntu14-x86_64.deb \
+             irods-runtime-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+             irods-dev-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+             training-example-1.0.deb
+
+sudo apt-get -y install libtar-dev
 
 sudo apt-get -f -y install
 
