@@ -31,8 +31,8 @@ Vagrant.configure(2) do |config|
       end
 
       if Vagrant.has_plugin?('landrush')
-       vm_config.landrush.enabled = true
-       vm_config.landrush.tld = 'vm'
+        vm_config.landrush.enabled = true
+        vm_config.landrush.tld = 'vm'
       end
 
       vm_config.ssh.username  = 'learner'
@@ -43,11 +43,11 @@ Vagrant.configure(2) do |config|
 
       vm_config.vm.provision 'shell', inline: cfg[:setup]
 
-      config.vm.provision 'file', source: Dir.getwd + '/contrib/reiinit', destination: '/tmp/reiinit'
-      config.vm.provision 'shell', inline: 'mv /tmp/reiinit /usr/local/bin/reiinit', privileged: true
+      vm_config.vm.provision 'file', source: Dir.getwd + '/contrib/reiinit', destination: '/tmp/reiinit'
+      vm_config.vm.provision 'shell', inline: 'mv /tmp/reiinit /usr/local/bin/reiinit', privileged: true
 
-      config.vm.provision 'file', source: Dir.getwd + '/install/install.env', destination: '/tmp/reiinit.env'
-      config.vm.provision 'shell', inline: 'mv /tmp/reiinit.env /etc/reiinit.env', privileged: true
+      vm_config.vm.provision 'file', source: Dir.getwd + '/install/install.env', destination: '/tmp/reiinit.env'
+      vm_config.vm.provision 'shell', inline: 'mv /tmp/reiinit.env /etc/reiinit.env', privileged: true
 
     end
   end
