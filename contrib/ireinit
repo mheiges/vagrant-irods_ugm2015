@@ -14,7 +14,7 @@ echo -n "password: "
 read -s PASSWD
 echo
 
-. /etc/reiinit.env
+. /etc/ireinit.env
 
 iexit full
 

@@ -43,11 +43,11 @@ Vagrant.configure(2) do |config|
 
       vm_config.vm.provision 'shell', inline: cfg[:setup]
 
-      vm_config.vm.provision 'file', source: Dir.getwd + '/contrib/reiinit', destination: '/tmp/reiinit'
-      vm_config.vm.provision 'shell', inline: 'mv /tmp/reiinit /usr/local/bin/reiinit', privileged: true
+      vm_config.vm.provision 'file', source: Dir.getwd + '/contrib/ireinit', destination: '/tmp/ireinit'
+      vm_config.vm.provision 'shell', inline: 'mv /tmp/ireinit /usr/local/bin/ireinit', privileged: true
 
-      vm_config.vm.provision 'file', source: Dir.getwd + '/install/install.env', destination: '/tmp/reiinit.env'
-      vm_config.vm.provision 'shell', inline: 'mv /tmp/reiinit.env /etc/reiinit.env', privileged: true
+      vm_config.vm.provision 'file', source: Dir.getwd + '/install/install.env', destination: '/tmp/ireinit.env'
+      vm_config.vm.provision 'shell', inline: 'mv /tmp/ireinit.env /etc/ireinit.env', privileged: true
 
     end
   end

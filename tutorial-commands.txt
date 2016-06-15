@@ -5,7 +5,7 @@ iadmin moduser bobby password passWORD
 
 iadmin mkresc newResc unixfilesystem rs1.vm:/var/lib/irods/iRODS/new_vault
 
-Tip: use our custom `reiinit` command instead of `iexit full` and
+Tip: use our custom `ireinit` command instead of `iexit full` and
 `iinit` for changing user logins.
 
 iadmin mkresc storageRescRemote unixfilesystem rs1.vm:/var/lib/irods/storageVault1
