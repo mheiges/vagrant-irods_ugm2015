@@ -2,18 +2,18 @@
 About
 =====
 
-This is a Vagrant port of the iRODS Consortium's 2015 User Group
-tutorial virtual-machine
+This is a Vagrant port of the virtual-machine used in the iRODS
+Consortium's 2015 User Group tutorial.
 (ftp://ftp.renci.org/pub/irods/training/ubuntu14-ugm2015.ova) with some
 modifications noted in the **Technical Background** below.
 
 See [iRODS documentation](http://irods.org/documentation/) and more specfically, 
 their [training PDF](http://irods.org/wp-content/uploads/2015/06/GettingStartedwiRODS4.1.pdf).
 
-This is a quick and dirty port; it is not fully documented nor supported by anyone.
+This Vagrant port is not supported by the iRODS team.
 
-The base box is Ubuntu without iRODS installed. You can install iRODS
-manually per the tutorial or use the provided install scripts.
+The base box is Ubuntu without iRODS installed. By default, Vagrant will
+provision iRODS using the provided installation scripts. 
 
 Prerequisites
 =====
@@ -55,6 +55,9 @@ you will need to `vagrant up --no-provision` each box separately,
 manually cross-reference the guests in `/etc/hosts` files and then
 manually provision with the shell scripts in the `install` directory
 (which should be accessible from each guest at `/vagrant/install`).
+Alternatively, you can provision only the iCAT-enable server with
+`vagrant up ies` and restrict your resources to that one virtual machine
+(this is the same as the original tutorial environment).
 
 Usage
 =====
@@ -62,8 +65,9 @@ Usage
 The Vagrantfile defines three virtual machines: `ies`, `rs1` and
 `client`. They are all based on the same Ubuntu box.
 
-Running `vagrant up` will start all three guest machines. Alternatively
-you can start them individually by name, e.g. `vagrant up ies`.
+Running `vagrant up` will start all three guest machines and install
+iRODS software. Alternatively you can start them individually by name,
+e.g. `vagrant up ies`.
 
 There are install scripts that Vagrant will run on each of these hosts
 to prepare them for their intended roles. These scripts are simple
@@ -84,7 +88,7 @@ iCAT-enabled server
 
 `vagrant ssh ies`
 
-Setup using `/vagrant/install-ies.sh`
+iRODS is provisioned with `/vagrant/install/install-ies.sh`
 
 This server includes a PostgreSQL database
 
@@ -95,7 +99,7 @@ resource server
 
 `vagrant ssh rs1`
 
-Setup using `/vagrant/install-rs.sh`
+iRODS is provisioned with `/vagrant/install/install-rs.sh`
 
 client (iCommands only)
 ------------------
@@ -104,7 +108,7 @@ client (iCommands only)
 
 `vagrant ssh client`
 
-Setup using `/vagrant/install-client.sh`
+iRODS is provisioned with `/vagrant/install/install-client.sh`
 
 
 Custom Rules
