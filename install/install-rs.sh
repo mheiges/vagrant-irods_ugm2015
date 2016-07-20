@@ -17,7 +17,8 @@ sudo apt-get update
 mkdir -p /vagrant/scratch
 cd /vagrant/scratch
 
-wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-resource-${IRODS_VERSION}-ubuntu14-x86_64.deb
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-resource-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+ || { echo "FATAL: could not download irods resource package"; exit 1; }
 
 #sudo dpkg -i irods-resource-4.1.6-ubuntu14-x86_64.deb
 sudo dpkg -i irods-resource-${IRODS_VERSION}-ubuntu14-x86_64.deb

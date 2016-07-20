@@ -26,14 +26,19 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE \"$DB_NAME\" to $DB_U
 mkdir -p /vagrant/scratch
 cd /vagrant/scratch
 
-wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-icat-${IRODS_VERSION}-ubuntu14-x86_64.deb
-wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-database-plugin-postgres-1.5-ubuntu14-x86_64.deb
-wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-runtime-${IRODS_VERSION}-ubuntu14-x86_64.deb
-wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-dev-${IRODS_VERSION}-ubuntu14-x86_64.deb
-wget -nc ftp://ftp.renci.org/pub/irods/training/training-example-1.0.deb
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-icat-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+  || { echo "FATAL: could not download icat package"; exit 1; }
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-database-plugin-postgres-${PG_PLUGIN_VERSION}-ubuntu14-x86_64.deb \
+  || { echo "FATAL: could not download db plugin package"; exit 1; }
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-runtime-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+  || { echo "FATAL: could not download irods runtime package"; exit 1; }
+wget -nc ftp://ftp.renci.org/pub/irods/releases/${IRODS_VERSION}/ubuntu14/irods-dev-${IRODS_VERSION}-ubuntu14-x86_64.deb \
+  || { echo "FATAL: could not download irods dev package"; exit 1; }
+wget -nc ftp://ftp.renci.org/pub/irods/training/training-example-1.0.deb \
+ || { echo "FATAL: could not download irods training package"; exit 1; }
 
 sudo dpkg -i irods-icat-${IRODS_VERSION}-ubuntu14-x86_64.deb \
-             irods-database-plugin-postgres-1.5-ubuntu14-x86_64.deb \
+             irods-database-plugin-postgres-${PG_PLUGIN_VERSION}-ubuntu14-x86_64.deb \
              irods-runtime-${IRODS_VERSION}-ubuntu14-x86_64.deb \
              irods-dev-${IRODS_VERSION}-ubuntu14-x86_64.deb \
              training-example-1.0.deb
